@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +23,6 @@ public class DealershipFileManager {
         try{
             FileInputStream fs = new FileInputStream("src/main/resources/Inventory.csv");
             Scanner scanner = new Scanner(fs);
-            scanner.nextLine();
 
             String input;
             while(scanner.hasNextLine()){
@@ -32,15 +33,16 @@ public class DealershipFileManager {
 
             }
         }
-        catch (FileNotFoundException ex){
-            System.out.println("Uh oh! Something went wrong! ");
+        catch (FileNotFoundException | NumberFormatException ex){
+            System.out.println("Something went wrong ! ");
+
         }
         return dealership;
     }
 
-    public void saveDealership(Dealership dealership) {
+    public static void saveDealership(Dealership dealership) {
         try {
-            FileWriter fw = new FileWriter("src/main/resources/Inventory.csv");
+            FileWriter fw = new FileWriter("src/main/resources/Inventory.csv", true);
             String headerRow= String.format("%s | %s | %s %n", dealership.getName(), dealership.getAddress(), dealership.getPhone());
             fw.write(headerRow);
 

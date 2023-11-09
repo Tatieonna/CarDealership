@@ -21,7 +21,6 @@ public class Vehicle {
         this.mileage = mileage;
         this.price = price;
     }
-
     public int getVin() {
         return vin;
     }
@@ -89,5 +88,14 @@ public class Vehicle {
     public String getType() {
         return type;
     }
-}
+
+    @Override
+    public String toString(){
+        return String.format("%d | %d | %s | %s | %s | %s | %d | %f ", this.getVin(), this.getYear(), this.getMake(), this.getModel(), this.getColor(), this.getVehicleType(), this.getMileage(), this.getPrice() );
+
+    }
+
+    }
+
+
 
